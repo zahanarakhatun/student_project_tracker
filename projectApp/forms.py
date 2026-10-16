@@ -1,22 +1,23 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from.models import CustomUser,ProjectModel
+from .models import CustomUser, ProjectModel
 
 
-class CustomUserForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model=CustomUser
-        fields=(
-            'username'
-            'email'
-            'student_name'
-            'student_id'
-        )
+class CustomUserCreationForm(UserCreationForm):
+
+  class Meta(UserCreationForm.Meta):
+    model = CustomUser
+    fields = (
+        'username',
+        'email',
+        'student_name',
+        'student_id',
+    )
 
 
 class ProjectForm(forms.ModelForm):
 
-   class Meta:
+  class Meta:
     model = ProjectModel
     fields = [
         'project_name',
@@ -27,4 +28,3 @@ class ProjectForm(forms.ModelForm):
     widgets = {
         'deadline': forms.DateInput(attrs={'type': 'date'}),
     }
-        

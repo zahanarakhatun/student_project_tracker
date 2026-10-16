@@ -1,0 +1,30 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center my-4">
+        <h1>Welcome to Student Project Tracker</h1>
+        <p class="lead">Manage your academic projects easily and efficiently.</p>
+    </div>
+
+    <!-- সকল প্রজেক্ট কার্ড স্টাইলে প্রদর্শন -->
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body bg-danger">
+                        <h5 class="card-title">{{ project.project_name }}</h5>
+                        <p class="card-text">{{ project.project_description|truncatewords:20 }}</p>
+                        <span class="badge bg-secondary">{{ project.get_project_status_display }}</span>
+                        <p class="text-muted mt-2 mb-0"><small>Deadline: {{ project.deadline }}</small></p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No projects found.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
